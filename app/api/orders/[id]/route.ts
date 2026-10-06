@@ -1,0 +1,2 @@
+import {NextResponse} from 'next/server';import {db} from '@/lib/db';import {requireUser} from '@/lib/auth';
+const allowed=['NEW','CONFIRMED','PAID','READY','COMPLETED','CANCELLED'];export async function PATCH(req:Request,{params}:{params:Promise<{id:string}>}){await requireUser();const {id}=await params;const {status}=await req.json();if(!allowed.includes(status))return NextResponse.json({error:'Invalid status'},{status:400});return NextResponse.json(await db.order.update({where:{id},data:{status}}))}

@@ -1,0 +1,2 @@
+'use client';import Link from 'next/link';import {usePathname} from 'next/navigation';
+export default function Sidebar(){const p=usePathname();const links=[['/dashboard','Дашборд'],['/products','Товары и склад'],['/orders','Заказы'],['/sales','Продажи'],['/clients','Клиенты']];return <aside className="sidebar"><div className="logo">Macmarket <span>CRM</span></div><nav className="nav">{links.map(([href,label])=><Link className={p===href?'active':''} href={href} key={href}>{label}</Link>)}<a href="/api/auth/logout">Выйти</a></nav></aside>}

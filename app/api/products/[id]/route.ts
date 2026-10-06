@@ -1,0 +1,3 @@
+import {NextResponse} from 'next/server';import {db} from '@/lib/db';import {requireUser} from '@/lib/auth';
+export async function PATCH(req:Request,{params}:{params:Promise<{id:string}>}){const u=await requireUser();if(u.role==='CASHIER')return NextResponse.json({error:'FORBIDDEN'},{status:403});const {id}=await params;const data=await req.json();const p=await db.product.update({where:{id},data});return NextResponse.json(p)}
+export async function DELETE(_:Request,{params}:{params:Promise<{id:string}>}){const u=await requireUser();if(u.role!=='ADMIN')return NextResponse.json({error:'FORBIDDEN'},{status:403});const {id}=await params;await db.product.update({where:{id},data:{status:'ARCHIVED'}});return NextResponse.json({ok:true})}

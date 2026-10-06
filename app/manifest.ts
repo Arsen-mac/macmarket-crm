@@ -1,0 +1,1 @@
+import type {MetadataRoute} from 'next';export default function manifest():MetadataRoute.Manifest{return{name:'Macmarket CRM',short_name:'Macmarket',description:'CRM магазина техники',start_url:'/dashboard',display:'standalone',background_color:'#f5f6f8',theme_color:'#111318',icons:[]}}
